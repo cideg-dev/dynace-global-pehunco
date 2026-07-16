@@ -260,11 +260,19 @@ function applyLang(lang) {
     if (document.getElementById('testiGrid')) renderTestimonials(lang);
     if (document.getElementById('faqList')) renderFAQ(lang);
 
-    const params = new URLSearchParams(window.location.search);
-    const pid = params.get('id');
+    const pid = getProductIdFromPath();
     if (pid && document.getElementById('productDetail')) {
         renderProductDetail(pid, lang);
     }
+}
+
+function getProductIdFromPath() {
+    const path = window.location.pathname;
+    const match = path.match(/^\/(.+)\.html$/);
+    if (match && match[1] !== 'index' && match[1] !== 'produit') {
+        return match[1];
+    }
+    return null;
 }
 
 document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -279,6 +287,9 @@ function renderProductDetail(id, lang) {
     if (!p) { container.innerHTML = '<div class="container" style="padding:10rem 1.5rem;text-align:center;"><h2>Produit introuvable</h2><a href="index.html" class="btn btn-primary">Retour aux produits</a></div>'; return; }
     const d = p[lang];
     const det = produitDetails[id][lang];
+    const imgName = id === 'tripleroot' ? 'DYNACE_TRIPLE_ROOT'
+        : id === 'acebrew' ? 'DYNACE_ACE_BREW'
+        : 'DYNACE_' + id.toUpperCase();
 
     document.title = d.name + ' – DYNACE Global Péhunco';
     const metaDesc = document.querySelector('meta[name="description"]');
@@ -289,7 +300,7 @@ function renderProductDetail(id, lang) {
             <div class="container pd-hero-content">
                 <a href="index.html#produits" class="pd-back" data-i18n="pd_back">← Retour aux produits</a>
                 <div class="pd-hero-inner">
-                    <div class="pd-icon"><i class="fas ${p.icon}"></i></div>
+                    <img src="images/${imgName}.jpg" alt="${d.name}" class="pd-image" />
                     <div>
                         <span class="pd-tag">${d.tag}</span>
                         <h1 class="pd-title">${d.name}</h1>
@@ -334,8 +345,11 @@ function renderProducts(lang) {
     const grid = document.getElementById('produitsGrid');
     grid.innerHTML = produits.map(p => {
         const d = p[lang];
-        return `<a href="produit.html?id=${p.id}" class="produit-card reveal">
-            <div class="produit-image" style="background:${p.color}"><i class="fas ${p.icon}"></i></div>
+        const imgName = p.id === 'tripleroot' ? 'DYNACE_TRIPLE_ROOT'
+            : p.id === 'acebrew' ? 'DYNACE_ACE_BREW'
+            : 'DYNACE_' + p.id.toUpperCase();
+        return `<a href="${p.id}.html" class="produit-card reveal">
+            <div class="produit-image" style="background:${p.color}"><img src="images/thumb_${imgName}.jpg" alt="${d.name}" class="produit-thumb" /></div>
             <div class="produit-body">
                 <h3>${d.name}</h3>
                 <span class="produit-tag">${d.tag}</span>
@@ -545,8 +559,7 @@ if (faqList) {
 }
 
 // ===== INIT =====
-const params = new URLSearchParams(window.location.search);
-if (params.get('id')) {
+if (getProductIdFromPath()) {
     applyLang(currentLang);
 } else {
     applyLang(currentLang);

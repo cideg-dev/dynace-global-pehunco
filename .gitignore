@@ -6,3 +6,6 @@ Thumbs.db
 
 # PDFs volumineux (disponibles localement)
 *.pdf
+
+# Dossier source des visuels (copiés dans images/)
+DYNACE_GLOBALE/

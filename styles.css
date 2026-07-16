@@ -688,7 +688,16 @@ ul { list-style: none; }
 .pd-hero-inner {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
+}
+.pd-image {
+    width: 160px;
+    height: auto;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+    flex-shrink: 0;
+    object-fit: cover;
+    aspect-ratio: 750/1085;
 }
 .pd-icon {
     width: 80px; height: 80px;
@@ -699,6 +708,12 @@ ul { list-style: none; }
     border-radius: 20px;
     font-size: 2.4rem;
     flex-shrink: 0;
+}
+.produit-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 .pd-tag {
     display: inline-block;
