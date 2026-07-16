@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://cideg-dev.github.io/dynace-global-pehunco/sitemap.xml

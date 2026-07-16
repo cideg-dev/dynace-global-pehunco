@@ -1,287 +1,231 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>DYNACE Global Péhunco – Santé & Bien-être</title>
-    <meta name="description" content="DYNACE Global Péhunco – Suppléments botaniques innovants pour la santé, la beauté et le bien-être. Rocenta, Aceguard, Urbanism, Collagène, Triple Root Coffee, Lyftmax, Acebrew." />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=5.0" />
+<title data-i18n="meta_title">DYNACE Global Péhunco – Santé & Bien-être</title>
+<meta name="description" content="DYNACE Global Péhunco – Suppléments botaniques innovants pour la santé, la beauté et le bien-être. Rocenta, Aceguard, Urbanism, Collagène, Triple Root Coffee, Lyftmax, Acebrew." />
+<meta name="keywords" content="DYNACE, Péhunco, Bénin, santé, bien-être, suppléments, botanique, Rocenta, Aceguard" />
+<meta name="author" content="DYNACE Global Péhunco" />
+<meta name="robots" content="index, follow" />
+<meta property="og:title" content="DYNACE Global Péhunco – Santé & Bien-être" />
+<meta property="og:description" content="Suppléments 100% botaniques pour la santé, la beauté et le bien-être." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://cideg-dev.github.io/dynace-global-pehunco/" />
+<meta property="og:locale" content="fr_FR" />
+<meta name="theme-color" content="#2d6a4f" />
+<link rel="canonical" href="https://cideg-dev.github.io/dynace-global-pehunco/" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="apple-touch-icon" href="favicon.svg" />
+<link rel="manifest" href="manifest.json" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<!-- ============ HEADER / NAV ============ -->
-<header class="header">
+<!-- ===== HEADER ===== -->
+<header class="header" id="header" role="banner">
     <div class="container header-inner">
-        <a href="#" class="logo">
+        <a href="#" class="logo" aria-label="DYNACE Global accueil">
             <span class="logo-icon"><i class="fas fa-leaf"></i></span>
             <span class="logo-text">DYNACE <small>Global</small></span>
         </a>
-        <button class="nav-toggle" id="navToggle" aria-label="Menu">
-            <i class="fas fa-bars"></i>
-        </button>
-        <nav class="nav" id="nav">
-            <a href="#accueil">Accueil</a>
-            <a href="#produits">Produits</a>
-            <a href="#a-propos">À propos</a>
-            <a href="#contact">Contact</a>
+        <div class="header-right">
+            <div class="lang-switch" role="radiogroup" aria-label="Langue">
+                <button class="lang-btn active" data-lang="fr" aria-pressed="true" role="radio">FR</button>
+                <button class="lang-btn" data-lang="en" aria-pressed="false" role="radio">EN</button>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <nav class="nav" id="nav" role="navigation" aria-label="Navigation principale">
+            <a href="#accueil" data-i18n="nav_home">Accueil</a>
+            <a href="#produits" data-i18n="nav_products">Produits</a>
+            <a href="#temoignages" data-i18n="nav_testimonials">Témoignages</a>
+            <a href="#a-propos" data-i18n="nav_about">À propos</a>
+            <a href="#faq" data-i18n="nav_faq">FAQ</a>
+            <a href="#contact" data-i18n="nav_contact">Contact</a>
         </nav>
     </div>
 </header>
 
-<!-- ============ HERO ============ -->
-<section class="hero" id="accueil">
-    <div class="hero-overlay"></div>
+<!-- ===== HERO ===== -->
+<section class="hero" id="accueil" aria-label="Accueil">
+    <div class="hero-bg"></div>
     <div class="container hero-content">
-        <h1 class="hero-title">DYNACE Global <span class="highlight">Péhunco</span></h1>
-        <p class="hero-subtitle">Votre partenaire santé & bien-être — Suppléments 100 % botaniques pour une vie meilleure.</p>
+        <span class="hero-badge" data-i18n="hero_badge">100 % Botanique</span>
+        <h1 class="hero-title" data-i18n="hero_title">DYNACE Global <span class="highlight">Péhunco</span></h1>
+        <p class="hero-subtitle" data-i18n="hero_sub">Votre partenaire santé & bien-être — Suppléments 100 % botaniques pour une vie meilleure.</p>
         <div class="hero-actions">
-            <a href="#produits" class="btn btn-primary">Découvrir nos produits</a>
-            <a href="#contact" class="btn btn-outline">Nous contacter</a>
+            <a href="#produits" class="btn btn-primary" data-i18n="hero_cta_products">Découvrir nos produits</a>
+            <a href="#contact" class="btn btn-outline" data-i18n="hero_cta_contact">Nous contacter</a>
+        </div>
+        <div class="hero-scroll" aria-hidden="true">
+            <i class="fas fa-chevron-down"></i>
         </div>
     </div>
 </section>
 
-<!-- ============ PRODUITS ============ -->
-<section class="section" id="produits">
+<!-- ===== PRODUITS ===== -->
+<section class="section" id="produits" aria-label="Produits">
     <div class="container">
         <div class="section-header">
-            <span class="section-badge">Nos Produits</span>
-            <h2>Une gamme complète pour votre santé</h2>
-            <p>7 produits uniques, 100 % botaniques, formulés par des experts.</p>
+            <span class="section-badge" data-i18n="products_badge">Nos Produits</span>
+            <h2 data-i18n="products_title">Une gamme complète pour votre santé</h2>
+            <p data-i18n="products_sub">7 produits uniques, 100 % botaniques, formulés par des experts.</p>
         </div>
-
-        <div class="produits-grid">
-            <!-- Produit 1 -->
-            <article class="produit-card">
-                <div class="produit-image" style="background: linear-gradient(135deg, #2d6a4f, #40916c);">
-                    <i class="fas fa-seedling"></i>
-                </div>
-                <div class="produit-body">
-                    <h3>Rocenta</h3>
-                    <span class="produit-tag">Produit Principal</span>
-                    <p>Santé générale & immunité. Supplément 100 % botanique à base de plantes et cellules souches. Inverse le vieillissement, répare l'ADN, booste l'énergie.</p>
-                    <ul>
-                        <li>Placenta de Rose Bulgare</li>
-                        <li>NMN (Nicotinamide Mononucléotide)</li>
-                        <li>Extrait d'Algue Brune</li>
-                        <li>Ashwagandha, Coenzyme Q10</li>
-                    </ul>
-                </div>
-            </article>
-
-            <!-- Produit 2 -->
-            <article class="produit-card">
-                <div class="produit-image" style="background: linear-gradient(135deg, #1b4332, #2d6a4f);">
-                    <i class="fas fa-shield-halved"></i>
-                </div>
-                <div class="produit-body">
-                    <h3>Aceguard</h3>
-                    <span class="produit-tag">Bouclier Immunitaire</span>
-                    <p>Renforce le système immunitaire. Triple formulation de cellules souches et ingrédients uniques pour une protection cellulaire optimale.</p>
-                    <ul>
-                        <li>Bêta-Glucane d'Algues</li>
-                        <li>Gymnema Sylvestre</li>
-                        <li>Champignon Lait de Tigre</li>
-                        <li>Extrait de Graine Noire</li>
-                    </ul>
-                </div>
-            </article>
-
-            <!-- Produit 3 -->
-            <article class="produit-card">
-                <div class="produit-image" style="background: linear-gradient(135deg, #e76f51, #f4a261);">
-                    <i class="fas fa-weight-scale"></i>
-                </div>
-                <div class="produit-body">
-                    <h3>Urbanism</h3>
-                    <span class="produit-tag">Gestion du Poids</span>
-                    <p>Programme minceur (Sunz + Moonz). Brûle la graisse viscérale et purifie l'organisme sans régime restrictif.</p>
-                    <ul>
-                        <li>Morosil® (Orange Sicilienne)</li>
-                        <li>Sinetrol® (France)</li>
-                        <li>Ingrédients coupe-faim</li>
-                        <li>Ingrédients remodelants</li>
-                    </ul>
-                </div>
-            </article>
-
-            <!-- Produit 4 -->
-            <article class="produit-card">
-                <div class="produit-image" style="background: linear-gradient(135deg, #d4a373, #faedcd);">
-                    <i class="fas fa-hand-sparkles"></i>
-                </div>
-                <div class="produit-body">
-                    <h3>Collagène</h3>
-                    <span class="produit-tag">Beauté & Régénération</span>
-                    <p>Régénère la peau, les articulations et les muscles. Paraissez 5 ans plus jeune avec une cure de 4 à 5 mois.</p>
-                    <ul>
-                        <li>Collagène Marin</li>
-                        <li>NMN anti-âge</li>
-                        <li>Nid d'Oiseau</li>
-                        <li>Élastine & GABA</li>
-                    </ul>
-                </div>
-            </article>
-
-            <!-- Produit 5 -->
-            <article class="produit-card">
-                <div class="produit-image" style="background: linear-gradient(135deg, #3a0ca3, #4361ee);">
-                    <i class="fas fa-mars"></i>
-                </div>
-                <div class="produit-body">
-                    <h3>Triple Root Coffee</h3>
-                    <span class="produit-tag">Santé Masculine</span>
-                    <p>Pour hommes adultes uniquement. Café santé qui booste la testostérone, l'endurance et la vitalité sexuelle.</p>
-                    <ul>
-                        <li>Augmente la testostérone</li>
-                        <li>Améliore la qualité des spermatozoïdes</li>
-                        <li>Prolonge l'érection</li>
-                        <li>Stimule la libido</li>
-                    </ul>
-                </div>
-            </article>
-
-            <!-- Produit 6 -->
-            <article class="produit-card">
-                <div class="produit-image" style="background: linear-gradient(135deg, #c77dff, #9d4edd);">
-                    <i class="fas fa-venus"></i>
-                </div>
-                <div class="produit-body">
-                    <h3>Lyftmax</h3>
-                    <span class="produit-tag">Santé Féminine</span>
-                    <p>Équilibre hormonal naturel. Raffermit, redessine la silhouette et atténue les symptômes de la ménopause.</p>
-                    <ul>
-                        <li>Estro-G 100 (breveté)</li>
-                        <li>Régule les cycles menstruels</li>
-                        <li>Stimule la libido féminine</li>
-                        <li>Soulage la ménopause</li>
-                    </ul>
-                </div>
-            </article>
-
-            <!-- Produit 7 -->
-            <article class="produit-card">
-                <div class="produit-image" style="background: linear-gradient(135deg, #7f4f24, #a68a64);">
-                    <i class="fas fa-mug-hot"></i>
-                </div>
-                <div class="produit-body">
-                    <h3>Acebrew Coffee</h3>
-                    <span class="produit-tag">Café Santé</span>
-                    <p>Café santé enrichi au NMN. Contrôle la glycémie, booste l'énergie et préserve la beauté. Pour hommes et femmes.</p>
-                    <ul>
-                        <li>NMN anti-âge</li>
-                        <li>Gymnema Sylvestre</li>
-                        <li>Café de haute qualité</li>
-                        <li>Régule la glycémie</li>
-                    </ul>
-                </div>
-            </article>
-        </div>
+        <div class="produits-grid" id="produitsGrid"></div>
     </div>
 </section>
 
-<!-- ============ À PROPOS ============ -->
-<section class="section section-dark" id="a-propos">
+<!-- ===== STATS ===== -->
+<section class="section-stats" aria-label="Statistiques">
+    <div class="container stats-grid">
+        <div class="stat-item"><span class="stat-num" data-count="7">0</span><span class="stat-label" data-i18n="stat_products">Produits uniques</span></div>
+        <div class="stat-item"><span class="stat-num" data-count="15">0</span><span class="stat-label" data-i18n="stat_countries">Pays présents</span></div>
+        <div class="stat-item"><span class="stat-num" data-count="100">0</span><span class="stat-label" data-i18n="stat_natural">% Botanique</span></div>
+        <div class="stat-item"><span class="stat-num" data-count="5000">0</span><span class="stat-label" data-i18n="stat_clients">Clients satisfaits</span></div>
+    </div>
+</section>
+
+<!-- ===== TÉMOIGNAGES ===== -->
+<section class="section" id="temoignages" aria-label="Témoignages">
     <div class="container">
         <div class="section-header">
-            <span class="section-badge">Qui sommes-nous</span>
-            <h2>DYNACE Global Péhunco</h2>
+            <span class="section-badge" data-i18n="testi_badge">Témoignages</span>
+            <h2 data-i18n="testi_title">Ils ont transformé leur santé</h2>
+        </div>
+        <div class="testi-grid" id="testiGrid"></div>
+    </div>
+</section>
+
+<!-- ===== À PROPOS ===== -->
+<section class="section section-dark" id="a-propos" aria-label="À propos">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge" data-i18n="about_badge">Qui sommes-nous</span>
+            <h2 data-i18n="about_title">DYNACE Global Péhunco</h2>
         </div>
         <div class="about-grid">
             <div class="about-text">
-                <p><strong>DYNACE Global</strong> est une entreprise internationale de santé et bien-être présente dans plus de <strong>15 pays</strong> à travers le monde.</p>
-                <p>Notre mission : offrir des <strong>suppléments 100 % botaniques</strong>, formulés à base de plantes et de cellules souches, pour accompagner chacun vers une meilleure santé.</p>
-                <p>Basée à <strong>Péhunco, Bénin</strong>, notre équipe locale est dédiée à vous conseiller et vous accompagner dans votre parcours bien-être.</p>
-                <div class="about-stats">
-                    <div><strong>7</strong><span>Produits uniques</span></div>
-                    <div><strong>15+</strong><span>Pays présents</span></div>
-                    <div><strong>100%</strong><span>Botanique</span></div>
-                </div>
+                <p data-i18n="about_p1"><strong>DYNACE Global</strong> est une entreprise internationale de santé et bien-être présente dans plus de <strong>15 pays</strong> à travers le monde.</p>
+                <p data-i18n="about_p2">Notre mission : offrir des <strong>suppléments 100 % botaniques</strong>, formulés à base de plantes et de cellules souches, pour accompagner chacun vers une meilleure santé.</p>
+                <p data-i18n="about_p3">Basée à <strong>Péhunco, Bénin</strong>, notre équipe locale est dédiée à vous conseiller et vous accompagner dans votre parcours bien-être.</p>
             </div>
             <div class="about-values">
-                <h3>Nos valeurs</h3>
+                <h3 data-i18n="about_values_title">Nos valeurs</h3>
                 <ul>
-                    <li><i class="fas fa-check-circle"></i> <strong>Qualité</strong> – Ingrédients rigoureusement sélectionnés</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Innovation</strong> – Formules brevetées et certifiées</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Nature</strong> – 100 % botanique, sans effets secondaires</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Accompagnement</strong> – Suivi personnalisé de nos distributeurs</li>
+                    <li><i class="fas fa-check-circle"></i> <strong data-i18n="about_val1_title">Qualité</strong> <span data-i18n="about_val1_desc">– Ingrédients rigoureusement sélectionnés</span></li>
+                    <li><i class="fas fa-check-circle"></i> <strong data-i18n="about_val2_title">Innovation</strong> <span data-i18n="about_val2_desc">– Formules brevetées et certifiées</span></li>
+                    <li><i class="fas fa-check-circle"></i> <strong data-i18n="about_val3_title">Nature</strong> <span data-i18n="about_val3_desc">– 100 % botanique, sans effets secondaires</span></li>
+                    <li><i class="fas fa-check-circle"></i> <strong data-i18n="about_val4_title">Accompagnement</strong> <span data-i18n="about_val4_desc">– Suivi personnalisé de nos distributeurs</span></li>
                 </ul>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ============ CONTACT ============ -->
-<section class="section" id="contact">
+<!-- ===== FAQ ===== -->
+<section class="section" id="faq" aria-label="FAQ">
     <div class="container">
         <div class="section-header">
-            <span class="section-badge">Contact</span>
-            <h2>Prenez rendez-vous</h2>
-            <p>Contactez-nous pour découvrir nos produits ou rejoindre notre équipe.</p>
+            <span class="section-badge" data-i18n="faq_badge">FAQ</span>
+            <h2 data-i18n="faq_title">Questions fréquentes</h2>
+        </div>
+        <div class="faq-list" id="faqList"></div>
+    </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="section" id="contact" aria-label="Contact">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge" data-i18n="contact_badge">Contact</span>
+            <h2 data-i18n="contact_title">Prenez rendez-vous</h2>
+            <p data-i18n="contact_sub">Contactez-nous pour découvrir nos produits ou rejoindre notre équipe.</p>
         </div>
         <div class="contact-grid">
             <div class="contact-info">
                 <div class="contact-item">
                     <i class="fas fa-location-dot"></i>
-                    <div>
-                        <strong>Adresse</strong>
-                        <span>Péhunco, Bénin</span>
-                    </div>
+                    <div><strong data-i18n="contact_addr">Adresse</strong><span data-i18n="contact_addr_val">Péhunco, Bénin</span></div>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-phone"></i>
-                    <div>
-                        <strong>Téléphone</strong>
-                        <span>+229 01 23 45 67</span>
-                    </div>
+                    <div><strong data-i18n="contact_phone">Téléphone</strong><span>+229 01 23 45 67</span></div>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-envelope"></i>
-                    <div>
-                        <strong>Email</strong>
-                        <span>contact@dynace-pehunco.com</span>
-                    </div>
+                    <div><strong data-i18n="contact_email">Email</strong><span>contact@dynace-pehunco.com</span></div>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-clock"></i>
-                    <div>
-                        <strong>Horaires</strong>
-                        <span>Lun – Sam : 8h – 19h</span>
-                    </div>
+                    <div><strong data-i18n="contact_hours">Horaires</strong><span data-i18n="contact_hours_val">Lun – Sam : 8h – 19h</span></div>
+                </div>
+                <div class="contact-cta">
+                    <a href="https://wa.me/22901234567?text=Bonjour%20DYNACE%20Global%20P%C3%A9hunco" target="_blank" rel="noopener" class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> <span data-i18n="contact_whatsapp">Écrire sur WhatsApp</span>
+                    </a>
                 </div>
             </div>
-            <form class="contact-form" id="contactForm">
-                <input type="text" placeholder="Votre nom" required>
-                <input type="email" placeholder="Votre email" required>
-                <input type="tel" placeholder="Votre téléphone">
-                <textarea rows="4" placeholder="Votre message" required></textarea>
-                <button type="submit" class="btn btn-primary">Envoyer</button>
+            <form class="contact-form" id="contactForm" novalidate>
+                <input type="text" id="formName" placeholder="Votre nom" required data-i18n-placeholder="form_name_ph" />
+                <input type="email" id="formEmail" placeholder="Votre email" required data-i18n-placeholder="form_email_ph" />
+                <input type="tel" id="formTel" placeholder="Votre téléphone" data-i18n-placeholder="form_tel_ph" />
+                <textarea id="formMsg" rows="4" placeholder="Votre message" required data-i18n-placeholder="form_msg_ph"></textarea>
+                <div class="form-error" id="formError"></div>
+                <button type="submit" class="btn btn-primary" id="formSubmit" data-i18n="form_send">Envoyer le message</button>
             </form>
         </div>
     </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
-<footer class="footer">
+<!-- ===== WHATSAPP FLOATING ===== -->
+<a href="https://wa.me/22901234567?text=Bonjour%20DYNACE%20Global%20P%C3%A9hunco" target="_blank" rel="noopener" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- ===== PWA INSTALL BANNER ===== -->
+<div class="pwa-banner" id="pwaBanner">
+    <div class="pwa-banner-content">
+        <i class="fas fa-leaf pwa-icon"></i>
+        <div>
+            <strong data-i18n="pwa_install_title">Installer DYNACE Global</strong>
+            <small data-i18n="pwa_install_desc">Installez notre application pour un accès rapide</small>
+        </div>
+        <button class="btn btn-primary btn-sm" id="pwaInstall" data-i18n="pwa_install_btn">Installer</button>
+        <button class="pwa-close" id="pwaClose" aria-label="Fermer">&times;</button>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer" role="contentinfo">
     <div class="container footer-inner">
         <div class="footer-brand">
             <span class="logo"><i class="fas fa-leaf"></i> DYNACE Global</span>
-            <p>Péhunco, Bénin — Votre santé, notre priorité.</p>
+            <p data-i18n="footer_tagline">Péhunco, Bénin — Votre santé, notre priorité.</p>
         </div>
         <div class="footer-links">
-            <a href="#accueil">Accueil</a>
-            <a href="#produits">Produits</a>
-            <a href="#a-propos">À propos</a>
-            <a href="#contact">Contact</a>
+            <a href="#accueil" data-i18n="nav_home">Accueil</a>
+            <a href="#produits" data-i18n="nav_products">Produits</a>
+            <a href="#temoignages" data-i18n="nav_testimonials">Témoignages</a>
+            <a href="#a-propos" data-i18n="nav_about">À propos</a>
+            <a href="#faq" data-i18n="nav_faq">FAQ</a>
+            <a href="#contact" data-i18n="nav_contact">Contact</a>
         </div>
-        <p class="footer-copy">&copy; 2025 DYNACE Global Péhunco. Tous droits réservés.</p>
+        <div class="footer-social">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://wa.me/22901234567" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p class="footer-copy">&copy; 2025 DYNACE Global Péhunco. <span data-i18n="footer_rights">Tous droits réservés.</span></p>
     </div>
 </footer>
 
-<!-- ============ SCROLL TO TOP ============ -->
 <button id="scrollTop" class="scroll-top" aria-label="Remonter"><i class="fas fa-arrow-up"></i></button>
 
 <script src="script.js"></script>

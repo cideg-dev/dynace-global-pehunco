@@ -1,0 +1,24 @@
+{
+    "name": "DYNACE Global Péhunco",
+    "short_name": "DYNACE Péhunco",
+    "description": "Suppléments botaniques innovants pour la santé, la beauté et le bien-être.",
+    "start_url": "/dynace-global-pehunco/",
+    "display": "standalone",
+    "background_color": "#0d1b2a",
+    "theme_color": "#2d6a4f",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}
