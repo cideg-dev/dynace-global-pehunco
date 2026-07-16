@@ -646,6 +646,8 @@ ul { list-style: none; }
     color: #fff;
 }
 .footer-copy { font-size: 0.82rem; opacity: 0.5; margin-top: 0.5rem; }
+.footer-copy .admin-link { opacity: 0.3; margin-left: 0.5rem; transition: opacity 0.3s; }
+.footer-copy .admin-link:hover { opacity: 1; }
 
 /* ===== SCROLL TOP ===== */
 .scroll-top {
