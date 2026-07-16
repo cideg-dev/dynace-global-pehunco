@@ -43,6 +43,13 @@ const i18n = {
         pwa_install_btn: 'Installer',
         footer_tagline: 'Péhunco, Bénin — Votre santé, notre priorité.',
         footer_rights: 'Tous droits réservés.',
+        pd_back: '← Retour aux produits',
+        pd_intro: 'Introduction',
+        pd_desc: 'Description',
+        pd_usage: 'Utilisation / Posologie',
+        pd_ingredients: 'Ingrédients clés',
+        pd_whatsapp: 'Commander sur WhatsApp',
+        pd_contact: 'Nous contacter',
         form_error_required: 'Veuillez remplir tous les champs obligatoires.',
         form_error_email: 'Veuillez entrer un email valide.',
         form_success: 'Message envoyé avec succès ✓'
@@ -84,6 +91,13 @@ const i18n = {
         pwa_install_btn: 'Install',
         footer_tagline: 'Péhunco, Benin — Your health, our priority.',
         footer_rights: 'All rights reserved.',
+        pd_back: '← Back to products',
+        pd_intro: 'Introduction',
+        pd_desc: 'Description',
+        pd_usage: 'Usage / Dosage',
+        pd_ingredients: 'Key Ingredients',
+        pd_whatsapp: 'Order on WhatsApp',
+        pd_contact: 'Contact us',
         form_error_required: 'Please fill all required fields.',
         form_error_email: 'Please enter a valid email.',
         form_success: 'Message sent successfully ✓'
@@ -92,14 +106,101 @@ const i18n = {
 
 // ===== DONNÉES DYNAMIQUES =====
 const produits = [
-    { icon: 'fa-seedling', color: 'linear-gradient(135deg,#2d6a4f,#40916c)', fr: { name: 'Rocenta', tag: 'Produit Principal', desc: 'Santé générale & immunité. Supplément 100 % botanique à base de plantes et cellules souches.', tags: ['Placenta de Rose Bulgare','NMN','Algue Brune','Ashwagandha'] }, en: { name: 'Rocenta', tag: 'Main Product', desc: 'General health & immunity. 100% botanical supplement based on plants and stem cells.', tags: ['Bulgarian Rose Placenta','NMN','Brown Algae','Ashwagandha'] } },
-    { icon: 'fa-shield-halved', color: 'linear-gradient(135deg,#1b4332,#2d6a4f)', fr: { name: 'Aceguard', tag: 'Bouclier Immunitaire', desc: 'Renforce le système immunitaire. Triple formulation de cellules souches.', tags: ['Bêta-Glucane','Gymnema Sylvestre','Lait de Tigre','Graine Noire'] }, en: { name: 'Aceguard', tag: 'Immune Shield', desc: 'Strengthens the immune system. Triple stem cell formulation.', tags: ['Beta-Glucan','Gymnema Sylvestre','Tiger Milk','Black Seed'] } },
-    { icon: 'fa-weight-scale', color: 'linear-gradient(135deg,#e76f51,#f4a261)', fr: { name: 'Urbanism', tag: 'Gestion du Poids', desc: 'Programme minceur (Sunz + Moonz). Brûle la graisse viscérale sans régime restrictif.', tags: ['Morosil®','Sinetrol®','Coupe-faim','Remodelant'] }, en: { name: 'Urbanism', tag: 'Weight Management', desc: 'Weight loss program (Sunz + Moonz). Burns visceral fat without restrictive diet.', tags: ['Morosil®','Sinetrol®','Appetite Control','Shaping'] } },
-    { icon: 'fa-hand-sparkles', color: 'linear-gradient(135deg,#d4a373,#faedcd)', fr: { name: 'Collagène', tag: 'Beauté & Régénération', desc: 'Régénère la peau, les articulations et les muscles. Paraissez 5 ans plus jeune.', tags: ['Collagène Marin','NMN','Nid d\'Oiseau','Élastine'] }, en: { name: 'Collagen', tag: 'Beauty & Regeneration', desc: 'Regenerates skin, joints and muscles. Look 5 years younger.', tags: ['Marine Collagen','NMN','Bird\'s Nest','Elastin'] } },
-    { icon: 'fa-mars', color: 'linear-gradient(135deg,#3a0ca3,#4361ee)', fr: { name: 'Triple Root Coffee', tag: 'Santé Masculine', desc: 'Pour hommes adultes. Café santé qui booste la testostérone et la vitalité.', tags: ['Testostérone','Spermatozoïdes','Endurance','Libido'] }, en: { name: 'Triple Root Coffee', tag: 'Men\'s Health', desc: 'For adult men. Health coffee that boosts testosterone and vitality.', tags: ['Testosterone','Sperm Quality','Endurance','Libido'] } },
-    { icon: 'fa-venus', color: 'linear-gradient(135deg,#c77dff,#9d4edd)', fr: { name: 'Lyftmax', tag: 'Santé Féminine', desc: 'Équilibre hormonal naturel. Raffermit et atténue les symptômes de la ménopause.', tags: ['Estro-G 100','Cycles menstruels','Libido','Ménopause'] }, en: { name: 'Lyftmax', tag: 'Women\'s Health', desc: 'Natural hormonal balance. Firms and relieves menopause symptoms.', tags: ['Estro-G 100','Menstrual Cycles','Libido','Menopause'] } },
-    { icon: 'fa-mug-hot', color: 'linear-gradient(135deg,#7f4f24,#a68a64)', fr: { name: 'Acebrew Coffee', tag: 'Café Santé', desc: 'Café santé enrichi au NMN. Contrôle la glycémie et booste l\'énergie.', tags: ['NMN','Gymnema Sylvestre','Glycémie','Énergie'] }, en: { name: 'Acebrew Coffee', tag: 'Health Coffee', desc: 'NMN-enriched health coffee. Controls blood sugar and boosts energy.', tags: ['NMN','Gymnema Sylvestre','Blood Sugar','Energy'] } }
+    { id: 'rocenta', icon: 'fa-seedling', color: 'linear-gradient(135deg,#2d6a4f,#40916c)', fr: { name: 'Rocenta', tag: 'Produit Principal', desc: 'Santé générale & immunité. Supplément 100 % botanique à base de plantes et cellules souches.', tags: ['Placenta de Rose Bulgare','NMN','Algue Brune','Ashwagandha'] }, en: { name: 'Rocenta', tag: 'Main Product', desc: 'General health & immunity. 100% botanical supplement based on plants and stem cells.', tags: ['Bulgarian Rose Placenta','NMN','Brown Algae','Ashwagandha'] } },
+    { id: 'aceguard', icon: 'fa-shield-halved', color: 'linear-gradient(135deg,#1b4332,#2d6a4f)', fr: { name: 'Aceguard', tag: 'Bouclier Immunitaire', desc: 'Renforce le système immunitaire. Triple formulation de cellules souches.', tags: ['Bêta-Glucane','Gymnema Sylvestre','Lait de Tigre','Graine Noire'] }, en: { name: 'Aceguard', tag: 'Immune Shield', desc: 'Strengthens the immune system. Triple stem cell formulation.', tags: ['Beta-Glucan','Gymnema Sylvestre','Tiger Milk','Black Seed'] } },
+    { id: 'urbanism', icon: 'fa-weight-scale', color: 'linear-gradient(135deg,#e76f51,#f4a261)', fr: { name: 'Urbanism', tag: 'Gestion du Poids', desc: 'Programme minceur (Sunz + Moonz). Brûle la graisse viscérale sans régime restrictif.', tags: ['Morosil®','Sinetrol®','Coupe-faim','Remodelant'] }, en: { name: 'Urbanism', tag: 'Weight Management', desc: 'Weight loss program (Sunz + Moonz). Burns visceral fat without restrictive diet.', tags: ['Morosil®','Sinetrol®','Appetite Control','Shaping'] } },
+    { id: 'collagene', icon: 'fa-hand-sparkles', color: 'linear-gradient(135deg,#d4a373,#faedcd)', fr: { name: 'Collagène', tag: 'Beauté & Régénération', desc: 'Régénère la peau, les articulations et les muscles. Paraissez 5 ans plus jeune.', tags: ['Collagène Marin','NMN','Nid d\'Oiseau','Élastine'] }, en: { name: 'Collagen', tag: 'Beauty & Regeneration', desc: 'Regenerates skin, joints and muscles. Look 5 years younger.', tags: ['Marine Collagen','NMN','Bird\'s Nest','Elastin'] } },
+    { id: 'tripleroot', icon: 'fa-mars', color: 'linear-gradient(135deg,#3a0ca3,#4361ee)', fr: { name: 'Triple Root Coffee', tag: 'Santé Masculine', desc: 'Pour hommes adultes. Café santé qui booste la testostérone et la vitalité.', tags: ['Testostérone','Spermatozoïdes','Endurance','Libido'] }, en: { name: 'Triple Root Coffee', tag: 'Men\'s Health', desc: 'For adult men. Health coffee that boosts testosterone and vitality.', tags: ['Testosterone','Sperm Quality','Endurance','Libido'] } },
+    { id: 'lyftmax', icon: 'fa-venus', color: 'linear-gradient(135deg,#c77dff,#9d4edd)', fr: { name: 'Lyftmax', tag: 'Santé Féminine', desc: 'Équilibre hormonal naturel. Raffermit et atténue les symptômes de la ménopause.', tags: ['Estro-G 100','Cycles menstruels','Libido','Ménopause'] }, en: { name: 'Lyftmax', tag: 'Women\'s Health', desc: 'Natural hormonal balance. Firms and relieves menopause symptoms.', tags: ['Estro-G 100','Menstrual Cycles','Libido','Menopause'] } },
+    { id: 'acebrew', icon: 'fa-mug-hot', color: 'linear-gradient(135deg,#7f4f24,#a68a64)', fr: { name: 'Acebrew Coffee', tag: 'Café Santé', desc: 'Café santé enrichi au NMN. Contrôle la glycémie et booste l\'énergie.', tags: ['NMN','Gymnema Sylvestre','Glycémie','Énergie'] }, en: { name: 'Acebrew Coffee', tag: 'Health Coffee', desc: 'NMN-enriched health coffee. Controls blood sugar and boosts energy.', tags: ['NMN','Gymnema Sylvestre','Blood Sugar','Energy'] } }
 ];
+
+const produitDetails = {
+    rocenta: {
+        fr: {
+            intro: '<strong>Rocenta</strong> est le produit phare de DYNACE Global. Un supplément 100 % botanique à base de Placenta de Rose Bulgare, de NMN et d\'extraits de plantes soigneusement sélectionnés pour renforcer l\'immunité et revitaliser l\'organisme.',
+            desc: 'Rocenta agit en profondeur sur le système immunitaire grâce à sa formulation unique associant des cellules souches végétales et des actifs naturels. Il aide à lutter contre la fatigue, renforce les défenses naturelles et favorise une meilleure récupération physique et mentale. Recommandé pour toute personne souhaitant maintenir une santé optimale au quotidien.',
+            usage: 'Prendre 1 sachet le matin à jeun. Verser la poudre sous la langue, laisser dissoudre 30 secondes à 1 minute, puis avaler. Attendre 20 minutes avant de manger ou boire. Après 10 jours, passer à 2 sachets par jour maximum si nécessaire.'
+        },
+        en: {
+            intro: '<strong>Rocenta</strong> is DYNACE Global\'s flagship product. A 100% botanical supplement based on Bulgarian Rose Placenta, NMN and carefully selected plant extracts to boost immunity and revitalize the body.',
+            desc: 'Rocenta works deeply on the immune system thanks to its unique formulation combining plant stem cells and natural active ingredients. It helps fight fatigue, strengthens natural defenses and promotes better physical and mental recovery. Recommended for anyone wishing to maintain optimal health on a daily basis.',
+            usage: 'Take 1 sachet in the morning on an empty stomach. Pour the powder under the tongue, let dissolve for 30 seconds to 1 minute, then swallow. Wait 20 minutes before eating or drinking. After 10 days, increase to a maximum of 2 sachets per day if necessary.'
+        }
+    },
+    aceguard: {
+        fr: {
+            intro: '<strong>Aceguard</strong> est le bouclier immunitaire nouvelle génération. Sa triple formulation à base de cellules souches végétales offre une protection renforcée contre les agressions extérieures.',
+            desc: 'Aceguard combine le Bêta-Glucane, le Gymnema Sylvestre, le Lait de Tigre et la Graine Noire pour créer une synergie protectrice unique. Il stimule les défenses naturelles de l\'organisme, aide à prévenir les infections saisonnières et soutient la vitalité globale. Idéal pour les périodes de changement de saison ou de convalescence.',
+            usage: 'Prendre 1 sachet par jour, de préférence le matin à jeun. Verser sous la langue, laisser fondre 30 secondes. Pour les enfants, utiliser un demi-sachet. Durée recommandée : 30 jours, renouvelable.'
+        },
+        en: {
+            intro: '<strong>Aceguard</strong> is the new generation immune shield. Its triple formulation based on plant stem cells offers reinforced protection against external aggressions.',
+            desc: 'Aceguard combines Beta-Glucan, Gymnema Sylvestre, Tiger Milk and Black Seed to create a unique protective synergy. It stimulates the body\'s natural defenses, helps prevent seasonal infections and supports overall vitality. Ideal for seasonal changes or recovery periods.',
+            usage: 'Take 1 sachet per day, preferably in the morning on an empty stomach. Pour under the tongue, let dissolve for 30 seconds. For children, use half a sachet. Recommended duration: 30 days, renewable.'
+        }
+    },
+    urbanism: {
+        fr: {
+            intro: '<strong>Urbanism</strong> est un programme minceur complet (Sunz + Moonz) conçu pour brûler la graisse viscérale sans régime restrictif ni effet yo-yo.',
+            desc: 'Urbanism associe le Morosil® (extrait de citrus fruitier) et le Sinetrol® (polyphénols d\'agrumes) pour un effet brûle-graisse puissant et naturel. Il agit en complément d\'une alimentation équilibrée pour remodeler la silhouette, réduire les mesures et retrouver un poids de forme. Sans effet secondaire, il respecte l\'équilibre nutritionnel du corps.',
+            usage: 'Prendre Sunz le matin avant le petit-déjeuner (1 capsule). Prendre Moonz le soir avant le dîner (1 capsule). Boire au moins 1,5 L d\'eau par jour. Cure recommandée de 3 mois pour des résultats optimaux.'
+        },
+        en: {
+            intro: '<strong>Urbanism</strong> is a complete weight loss program (Sunz + Moonz) designed to burn visceral fat without restrictive diet or yo-yo effect.',
+            desc: 'Urbanism combines Morosil® (citrus fruit extract) and Sinetrol® (citrus polyphenols) for a powerful and natural fat-burning effect. It works alongside a balanced diet to reshape the silhouette, reduce measurements and regain a healthy weight. No side effects, it respects the body\'s nutritional balance.',
+            usage: 'Take Sunz in the morning before breakfast (1 capsule). Take Moonz in the evening before dinner (1 capsule). Drink at least 1.5 L of water per day. Recommended 3-month cure for optimal results.'
+        }
+    },
+    collagene: {
+        fr: {
+            intro: '<strong>Collagène</strong> est le supplément beauté et régénération par excellence. À base de Collagène Marin, NMN, Nid d\'Oiseau et Élastine, il régénère la peau, les articulations et les muscles.',
+            desc: 'Le Collagène DYNACE est un complexe complet anti-âge qui agit de l\'intérieur. Il stimule la production naturelle de collagène, améliore l\'élasticité de la peau, renforce les ongles et les cheveux, et soulage les douleurs articulaires. Les utilisateurs rapportent une peau plus ferme et plus jeune dès 3 mois d\'utilisation.',
+            usage: 'Prendre 1 sachet par jour, dilué dans un verre d\'eau ou de jus de fruit, de préférence le matin à jeun. Cure recommandée de 3 mois pour des résultats visibles. Peut être associé à Lyftmax pour un résultat synergique.'
+        },
+        en: {
+            intro: '<strong>Collagen</strong> is the ultimate beauty and regeneration supplement. Based on Marine Collagen, NMN, Bird\'s Nest and Elastin, it regenerates skin, joints and muscles.',
+            desc: 'DYNACE Collagen is a complete anti-aging complex that works from within. It stimulates natural collagen production, improves skin elasticity, strengthens nails and hair, and relieves joint pain. Users report firmer, younger-looking skin within 3 months of use.',
+            usage: 'Take 1 sachet per day, diluted in a glass of water or fruit juice, preferably in the morning on an empty stomach. Recommended 3-month cure for visible results. Can be combined with Lyftmax for a synergistic effect.'
+        }
+    },
+    tripleroot: {
+        fr: {
+            intro: '<strong>Triple Root Coffee</strong> est un café santé spécialement conçu pour les hommes adultes. Il booste naturellement la testostérone et la vitalité masculine.',
+            desc: 'Triple Root Coffee est bien plus qu\'un simple café. Enrichi en actifs naturels, il améliore la production de testostérone, augmente l\'endurance physique et sexuelle, et améliore la qualité du sperme. Sa formulation unique permet une meilleure circulation sanguine et une vitalité retrouvée. Résultats visibles dès 2 à 4 semaines.',
+            usage: 'Prendre 1 tasse par jour, de préférence le matin. Diluer le contenu d\'un sachet dans de l\'eau chaude (comme un café instantané). Ne pas dépasser 2 tasses par jour. Déconseillé aux hommes de moins de 18 ans.'
+        },
+        en: {
+            intro: '<strong>Triple Root Coffee</strong> is a health coffee specially designed for adult men. It naturally boosts testosterone and male vitality.',
+            desc: 'Triple Root Coffee is much more than a simple coffee. Enriched with natural active ingredients, it improves testosterone production, increases physical and sexual endurance, and improves sperm quality. Its unique formulation allows better blood circulation and renewed vitality. Visible results from 2 to 4 weeks.',
+            usage: 'Take 1 cup per day, preferably in the morning. Dilute the contents of one sachet in hot water (like instant coffee). Do not exceed 2 cups per day. Not recommended for men under 18.'
+        }
+    },
+    lyftmax: {
+        fr: {
+            intro: '<strong>Lyftmax</strong> est le complément santé féminin par excellence. Il équilibre naturellement les hormones, raffermit et atténue les symptômes de la ménopause.',
+            desc: 'Lyftmax contient de l\'Estro-G 100, un extrait végétal standardisé qui régule le cycle menstruel et atténue les désagréments de la ménopause (bouffées de chaleur, sautes d\'humeur). Il raffermit la poitrine, améliore la libido féminine et redonne de l\'énergie. Idéal pour les femmes souhaitant traverser sereinement chaque étape de leur vie.',
+            usage: 'Prendre 1 capsule par jour, de préférence le matin avec un verre d\'eau. Cure recommandée de 3 mois. Peut être associé au Collagène pour un effet beauté complet.'
+        },
+        en: {
+            intro: '<strong>Lyftmax</strong> is the ultimate female health supplement. It naturally balances hormones, firms and reduces menopause symptoms.',
+            desc: 'Lyftmax contains Estro-G 100, a standardized plant extract that regulates the menstrual cycle and reduces menopausal discomfort (hot flashes, mood swings). It firms the bust, improves female libido and restores energy. Ideal for women wishing to go through each stage of their life serenely.',
+            usage: 'Take 1 capsule per day, preferably in the morning with a glass of water. Recommended 3-month cure. Can be combined with Collagen for a complete beauty effect.'
+        }
+    },
+    acebrew: {
+        fr: {
+            intro: '<strong>Acebrew Coffee</strong> est un café santé enrichi au NMN. Il contrôle la glycémie et booste l\'énergie au quotidien.',
+            desc: 'Acebrew Coffee associe le NMN (Nicotinamide Mononucléotide), le Gymnema Sylvestre et des extraits de café vert pour offrir une boisson énergisante et santé. Il aide à réguler le taux de sucre dans le sang, stimule le métabolisme cellulaire et procure une énergie durable sans nervosité. Idéal pour les diabétiques et les personnes soucieuses de leur glycémie.',
+            usage: 'Prendre 1 tasse par jour, le matin au petit-déjeuner. Diluer un sachet dans de l\'eau chaude. Ne pas dépasser 2 tasses par jour. Peut être consommé avec ou sans sucre.'
+        },
+        en: {
+            intro: '<strong>Acebrew Coffee</strong> is an NMN-enriched health coffee. It controls blood sugar and boosts daily energy.',
+            desc: 'Acebrew Coffee combines NMN (Nicotinamide Mononucleotide), Gymnema Sylvestre and green coffee extracts to offer an energizing and healthy drink. It helps regulate blood sugar levels, stimulates cellular metabolism and provides lasting energy without edginess. Ideal for diabetics and people concerned about their blood sugar.',
+            usage: 'Take 1 cup per day, in the morning at breakfast. Dilute one sachet in hot water. Do not exceed 2 cups per day. Can be consumed with or without sugar.'
+        }
+    }
+};
 
 const temoignages = {
     fr: [
@@ -155,21 +256,85 @@ function applyLang(lang) {
         b.setAttribute('aria-pressed', b.dataset.lang === lang);
     });
 
-    renderProducts(lang);
-    renderTestimonials(lang);
-    renderFAQ(lang);
+    if (document.getElementById('produitsGrid')) renderProducts(lang);
+    if (document.getElementById('testiGrid')) renderTestimonials(lang);
+    if (document.getElementById('faqList')) renderFAQ(lang);
+
+    const params = new URLSearchParams(window.location.search);
+    const pid = params.get('id');
+    if (pid && document.getElementById('productDetail')) {
+        renderProductDetail(pid, lang);
+    }
 }
 
 document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => applyLang(btn.dataset.lang));
 });
 
+// ===== PRODUCT DETAIL PAGE =====
+function renderProductDetail(id, lang) {
+    const container = document.getElementById('productDetail');
+    if (!container) return;
+    const p = produits.find(x => x.id === id);
+    if (!p) { container.innerHTML = '<div class="container" style="padding:10rem 1.5rem;text-align:center;"><h2>Produit introuvable</h2><a href="index.html" class="btn btn-primary">Retour aux produits</a></div>'; return; }
+    const d = p[lang];
+    const det = produitDetails[id][lang];
+
+    document.title = d.name + ' – DYNACE Global Péhunco';
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.content = d.desc;
+
+    container.innerHTML = `
+        <section class="pd-hero" style="background:${p.color}">
+            <div class="container pd-hero-content">
+                <a href="index.html#produits" class="pd-back" data-i18n="pd_back">← Retour aux produits</a>
+                <div class="pd-hero-inner">
+                    <div class="pd-icon"><i class="fas ${p.icon}"></i></div>
+                    <div>
+                        <span class="pd-tag">${d.tag}</span>
+                        <h1 class="pd-title">${d.name}</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <div class="container pd-grid">
+                <div class="pd-section">
+                    <h2 class="pd-section-title" data-i18n="pd_intro">Introduction</h2>
+                    <p class="pd-text">${det.intro}</p>
+                </div>
+                <div class="pd-section">
+                    <h2 class="pd-section-title" data-i18n="pd_desc">Description</h2>
+                    <p class="pd-text">${det.desc}</p>
+                </div>
+                <div class="pd-section">
+                    <h2 class="pd-section-title" data-i18n="pd_usage">Utilisation / Posologie</h2>
+                    <div class="pd-usage-box">
+                        <i class="fas fa-clock"></i>
+                        <p>${det.usage}</p>
+                    </div>
+                </div>
+                <div class="pd-section">
+                    <h2 class="pd-section-title" data-i18n="pd_ingredients">Ingrédients clés</h2>
+                    <div class="pd-tags">${d.tags.map(t => `<span class="pd-tag-item">${t}</span>`).join('')}</div>
+                </div>
+                <div class="pd-section">
+                    <div class="pd-cta">
+                        <a href="https://wa.me/2290166212501?text=Bonjour%20je%20souhaite%20des%20informations%20sur%20${encodeURIComponent(d.name)}" target="_blank" rel="noopener" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> <span data-i18n="pd_whatsapp">Commander sur WhatsApp</span></a>
+                        <a href="index.html#contact" class="btn btn-primary"><span data-i18n="pd_contact">Nous contacter</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>`;
+    observeReveal();
+}
+
 // ===== RENDER PRODUITS =====
 function renderProducts(lang) {
     const grid = document.getElementById('produitsGrid');
     grid.innerHTML = produits.map(p => {
         const d = p[lang];
-        return `<article class="produit-card reveal">
+        return `<a href="produit.html?id=${p.id}" class="produit-card reveal">
             <div class="produit-image" style="background:${p.color}"><i class="fas ${p.icon}"></i></div>
             <div class="produit-body">
                 <h3>${d.name}</h3>
@@ -177,7 +342,7 @@ function renderProducts(lang) {
                 <p>${d.desc}</p>
                 <ul>${d.tags.map(t => `<li>${t}</li>`).join('')}</ul>
             </div>
-        </article>`;
+        </a>`;
     }).join('');
     observeReveal();
 }
@@ -371,14 +536,22 @@ pwaCloseBtn?.addEventListener('click', () => pwaBanner.classList.remove('show'))
 window.addEventListener('appinstalled', () => pwaBanner.classList.remove('show'));
 
 // ===== FAQ EVENT DELEGATION =====
-document.getElementById('faqList').addEventListener('click', function(e) {
-    const btn = e.target.closest('.faq-question');
-    if (btn) toggleFAQ(btn);
-});
+const faqList = document.getElementById('faqList');
+if (faqList) {
+    faqList.addEventListener('click', function(e) {
+        const btn = e.target.closest('.faq-question');
+        if (btn) toggleFAQ(btn);
+    });
+}
 
 // ===== INIT =====
-applyLang(currentLang);
-animateStats();
-observeReveal();
+const params = new URLSearchParams(window.location.search);
+if (params.get('id')) {
+    applyLang(currentLang);
+} else {
+    applyLang(currentLang);
+    animateStats();
+    observeReveal();
+}
 
 })();

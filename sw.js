@@ -1,5 +1,5 @@
 const CACHE = 'dynace-v1';
-const URLS = ['/', '/dynace-global-pehunco/', '/index.html', '/styles.css?v=2', '/script.js?v=2', '/manifest.json', '/Dynace1.png', '/icon-192.png', '/icon-512.png'];
+const URLS = ['/', '/dynace-global-pehunco/', '/index.html', '/produit.html', '/styles.css?v=2', '/script.js?v=2', '/manifest.json', '/Dynace1.png', '/icon-192.png', '/icon-512.png'];
 
 self.addEventListener('install', e => {
     e.waitUntil(

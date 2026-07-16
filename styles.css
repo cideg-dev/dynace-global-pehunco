@@ -669,6 +669,111 @@ ul { list-style: none; }
 .scroll-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
 .scroll-top:hover { transform: translateY(-3px); }
 
+/* ===== PRODUCT DETAIL ===== */
+.product-detail { min-height: 60vh; }
+.pd-hero {
+    padding: 8rem 0 4rem;
+    color: #fff;
+    position: relative;
+}
+.pd-hero-content { position: relative; z-index: 1; }
+.pd-back {
+    display: inline-block;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    transition: color 0.3s;
+}
+.pd-back:hover { color: #fff; }
+.pd-hero-inner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+.pd-icon {
+    width: 80px; height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    font-size: 2.4rem;
+    flex-shrink: 0;
+}
+.pd-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(4px);
+    padding: 0.3rem 1rem;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+.pd-title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900;
+}
+.pd-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.pd-section-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--green-700);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--green-100);
+}
+.pd-text {
+    color: var(--text-light);
+    line-height: 1.8;
+    font-size: 1rem;
+}
+.pd-usage-box {
+    background: var(--green-100);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+.pd-usage-box i {
+    font-size: 1.5rem;
+    color: var(--green-700);
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+}
+.pd-usage-box p {
+    color: var(--text);
+    line-height: 1.7;
+}
+.pd-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+.pd-tag-item {
+    background: var(--green-100);
+    color: var(--green-800);
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+.pd-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+}
+
 /* ===== REVEAL ANIMATION ===== */
 .reveal {
     opacity: 0;
