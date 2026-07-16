@@ -13,15 +13,16 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://cideg-dev.github.io/dynace-global-pehunco/" />
 <meta property="og:locale" content="fr_FR" />
+<meta property="og:image" content="Dynace.png" />
 <meta name="theme-color" content="#2d6a4f" />
 <link rel="canonical" href="https://cideg-dev.github.io/dynace-global-pehunco/" />
-<link rel="icon" type="image/svg+xml" href="favicon.svg" />
-<link rel="apple-touch-icon" href="favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="Dynace1.png" />
+<link rel="apple-touch-icon" href="icon-192.png" />
 <link rel="manifest" href="manifest.json" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="styles.css?v=2" />
 </head>
 <body>
 
@@ -29,7 +30,7 @@
 <header class="header" id="header" role="banner">
     <div class="container header-inner">
         <a href="#" class="logo" aria-label="DYNACE Global accueil">
-            <span class="logo-icon"><i class="fas fa-leaf"></i></span>
+            <img src="Dynace1.png" alt="DYNACE Global" class="logo-img" />
             <span class="logo-text">DYNACE <small>Global</small></span>
         </a>
         <div class="header-right">
@@ -176,6 +177,7 @@
                 <input type="email" id="formEmail" placeholder="Votre email" required data-i18n-placeholder="form_email_ph" />
                 <input type="tel" id="formTel" placeholder="Votre téléphone" data-i18n-placeholder="form_tel_ph" />
                 <textarea id="formMsg" rows="4" placeholder="Votre message" required data-i18n-placeholder="form_msg_ph"></textarea>
+                <input type="hidden" name="_subject" value="Nouveau message DYNACE Global" />
                 <div class="form-error" id="formError"></div>
                 <button type="submit" class="btn btn-primary" id="formSubmit" data-i18n="form_send">Envoyer le message</button>
             </form>
@@ -191,7 +193,7 @@
 <!-- ===== PWA INSTALL BANNER ===== -->
 <div class="pwa-banner" id="pwaBanner">
     <div class="pwa-banner-content">
-        <i class="fas fa-leaf pwa-icon"></i>
+        <img src="Dynace1.png" alt="" class="pwa-icon-img" />
         <div>
             <strong data-i18n="pwa_install_title">Installer DYNACE Global</strong>
             <small data-i18n="pwa_install_desc">Installez notre application pour un accès rapide</small>
@@ -205,7 +207,7 @@
 <footer class="footer" role="contentinfo">
     <div class="container footer-inner">
         <div class="footer-brand">
-            <span class="logo"><i class="fas fa-leaf"></i> DYNACE Global</span>
+            <span class="logo"><img src="Dynace1.png" alt="" class="logo-img" /> DYNACE Global</span>
             <p data-i18n="footer_tagline">Péhunco, Bénin — Votre santé, notre priorité.</p>
         </div>
         <div class="footer-links">
@@ -220,7 +222,7 @@
             <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
             <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="https://wa.me/22901234567" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://wa.me/2290166212501" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
         <p class="footer-copy">&copy; 2025 DYNACE Global Péhunco. <span data-i18n="footer_rights">Tous droits réservés.</span></p>
     </div>
@@ -228,6 +230,6 @@
 
 <button id="scrollTop" class="scroll-top" aria-label="Remonter"><i class="fas fa-arrow-up"></i></button>
 
-<script src="script.js"></script>
+<script src="script.js?v=2"></script>
 </body>
 </html>

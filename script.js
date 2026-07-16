@@ -1,6 +1,8 @@
 /* ============================================
-   DYNACE Global Péhunco – Script v2
+   DYNACE Global Péhunco – Script v3
    ============================================ */
+(function() {
+'use strict';
 
 // ===== TRADUCTIONS =====
 const i18n = {
@@ -199,8 +201,8 @@ function renderFAQ(lang) {
     const list = document.getElementById('faqList');
     const data = faqData[lang];
     list.innerHTML = data.map((item, i) => `
-        <div class="faq-item reveal">
-            <button class="faq-question" onclick="toggleFAQ(this)">
+        <div class="faq-item reveal" data-index="${i}">
+            <button class="faq-question">
                 ${item.q} <i class="fas fa-chevron-down"></i>
             </button>
             <div class="faq-answer"><div class="faq-answer-inner">${item.r}</div></div>
@@ -210,7 +212,7 @@ function renderFAQ(lang) {
 }
 
 function toggleFAQ(btn) {
-    const item = btn.parentElement;
+    const item = btn.closest('.faq-item');
     const answer = item.querySelector('.faq-answer');
     const isOpen = item.classList.contains('open');
     document.querySelectorAll('.faq-item.open').forEach(el => {
@@ -262,11 +264,12 @@ function animateStats() {
 }
 
 // ===== CONTACT FORM =====
-document.getElementById('contactForm').addEventListener('submit', function(e) {
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const error = document.getElementById('formError');
     const name = document.getElementById('formName').value.trim();
     const email = document.getElementById('formEmail').value.trim();
+    const tel = document.getElementById('formTel').value.trim();
     const msg = document.getElementById('formMsg').value.trim();
 
     error.classList.remove('visible');
@@ -284,16 +287,26 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 
     const btn = document.getElementById('formSubmit');
     const original = btn.textContent;
-    btn.textContent = '✓ ' + i18n[currentLang].form_success;
     btn.disabled = true;
-    btn.style.background = '#2d6a4f';
+    btn.textContent = '⏳ ...';
 
-    setTimeout(() => {
+    try {
+        const payload = { name, email, tel, message: msg };
+        const resp = await fetch('https://formspree.io/f/xjkgzknj', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        btn.textContent = '✓ ' + i18n[currentLang].form_success;
+        btn.style.background = '#2d6a4f';
+        this.reset();
+    } catch (err) {
+        error.textContent = 'Erreur d\'envoi. Veuillez réessayer ou nous écrire par email.';
+        error.classList.add('visible');
         btn.textContent = original;
         btn.disabled = false;
-        btn.style.background = '';
-        this.reset();
-    }, 3000);
+    }
 });
 
 // ===== HEADER SCROLL =====
@@ -328,7 +341,9 @@ nav.querySelectorAll('a').forEach(a => {
 // ===== PWA =====
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=2').catch(err => {
+            console.warn('SW registration failed:', err);
+        });
     });
 }
 
@@ -355,7 +370,15 @@ pwaCloseBtn?.addEventListener('click', () => pwaBanner.classList.remove('show'))
 
 window.addEventListener('appinstalled', () => pwaBanner.classList.remove('show'));
 
+// ===== FAQ EVENT DELEGATION =====
+document.getElementById('faqList').addEventListener('click', function(e) {
+    const btn = e.target.closest('.faq-question');
+    if (btn) toggleFAQ(btn);
+});
+
 // ===== INIT =====
 applyLang(currentLang);
 animateStats();
 observeReveal();
+
+})();
