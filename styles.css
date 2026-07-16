@@ -710,10 +710,29 @@ ul { list-style: none; }
     flex-shrink: 0;
 }
 .produit-thumb {
-    width: 100%;
-    height: 100%;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
     object-fit: cover;
     display: block;
+    border: 3px solid rgba(255,255,255,0.3);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.produit-prix {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--green-700);
+    margin-bottom: 0.6rem;
+}
+.pd-price {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+    margin-top: 0.5rem;
+    background: rgba(255,255,255,0.15);
+    display: inline-block;
+    padding: 0.3rem 1.2rem;
+    border-radius: 50px;
 }
 .pd-tag {
     display: inline-block;

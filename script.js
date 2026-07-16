@@ -104,18 +104,32 @@ const i18n = {
     }
 };
 
+// ===== ADMIN OVERRIDES =====
+(function loadAdminData() {
+    try {
+        const saved = localStorage.getItem('dynace_admin_data');
+        if (saved) {
+            const admin = JSON.parse(saved);
+            if (admin.produits && admin.details) {
+                window._adminProduits = admin.produits;
+                window._adminDetails = admin.details;
+            }
+        }
+    } catch(e) {}
+})();
+
 // ===== DONNÉES DYNAMIQUES =====
-const produits = [
-    { id: 'rocenta', icon: 'fa-seedling', color: 'linear-gradient(135deg,#2d6a4f,#40916c)', fr: { name: 'Rocenta', tag: 'Produit Principal', desc: 'Santé générale & immunité. Supplément 100 % botanique à base de plantes et cellules souches.', tags: ['Placenta de Rose Bulgare','NMN','Algue Brune','Ashwagandha'] }, en: { name: 'Rocenta', tag: 'Main Product', desc: 'General health & immunity. 100% botanical supplement based on plants and stem cells.', tags: ['Bulgarian Rose Placenta','NMN','Brown Algae','Ashwagandha'] } },
-    { id: 'aceguard', icon: 'fa-shield-halved', color: 'linear-gradient(135deg,#1b4332,#2d6a4f)', fr: { name: 'Aceguard', tag: 'Bouclier Immunitaire', desc: 'Renforce le système immunitaire. Triple formulation de cellules souches.', tags: ['Bêta-Glucane','Gymnema Sylvestre','Lait de Tigre','Graine Noire'] }, en: { name: 'Aceguard', tag: 'Immune Shield', desc: 'Strengthens the immune system. Triple stem cell formulation.', tags: ['Beta-Glucan','Gymnema Sylvestre','Tiger Milk','Black Seed'] } },
-    { id: 'urbanism', icon: 'fa-weight-scale', color: 'linear-gradient(135deg,#e76f51,#f4a261)', fr: { name: 'Urbanism', tag: 'Gestion du Poids', desc: 'Programme minceur (Sunz + Moonz). Brûle la graisse viscérale sans régime restrictif.', tags: ['Morosil®','Sinetrol®','Coupe-faim','Remodelant'] }, en: { name: 'Urbanism', tag: 'Weight Management', desc: 'Weight loss program (Sunz + Moonz). Burns visceral fat without restrictive diet.', tags: ['Morosil®','Sinetrol®','Appetite Control','Shaping'] } },
-    { id: 'collagene', icon: 'fa-hand-sparkles', color: 'linear-gradient(135deg,#d4a373,#faedcd)', fr: { name: 'Collagène', tag: 'Beauté & Régénération', desc: 'Régénère la peau, les articulations et les muscles. Paraissez 5 ans plus jeune.', tags: ['Collagène Marin','NMN','Nid d\'Oiseau','Élastine'] }, en: { name: 'Collagen', tag: 'Beauty & Regeneration', desc: 'Regenerates skin, joints and muscles. Look 5 years younger.', tags: ['Marine Collagen','NMN','Bird\'s Nest','Elastin'] } },
-    { id: 'tripleroot', icon: 'fa-mars', color: 'linear-gradient(135deg,#3a0ca3,#4361ee)', fr: { name: 'Triple Root Coffee', tag: 'Santé Masculine', desc: 'Pour hommes adultes. Café santé qui booste la testostérone et la vitalité.', tags: ['Testostérone','Spermatozoïdes','Endurance','Libido'] }, en: { name: 'Triple Root Coffee', tag: 'Men\'s Health', desc: 'For adult men. Health coffee that boosts testosterone and vitality.', tags: ['Testosterone','Sperm Quality','Endurance','Libido'] } },
-    { id: 'lyftmax', icon: 'fa-venus', color: 'linear-gradient(135deg,#c77dff,#9d4edd)', fr: { name: 'Lyftmax', tag: 'Santé Féminine', desc: 'Équilibre hormonal naturel. Raffermit et atténue les symptômes de la ménopause.', tags: ['Estro-G 100','Cycles menstruels','Libido','Ménopause'] }, en: { name: 'Lyftmax', tag: 'Women\'s Health', desc: 'Natural hormonal balance. Firms and relieves menopause symptoms.', tags: ['Estro-G 100','Menstrual Cycles','Libido','Menopause'] } },
-    { id: 'acebrew', icon: 'fa-mug-hot', color: 'linear-gradient(135deg,#7f4f24,#a68a64)', fr: { name: 'Acebrew Coffee', tag: 'Café Santé', desc: 'Café santé enrichi au NMN. Contrôle la glycémie et booste l\'énergie.', tags: ['NMN','Gymnema Sylvestre','Glycémie','Énergie'] }, en: { name: 'Acebrew Coffee', tag: 'Health Coffee', desc: 'NMN-enriched health coffee. Controls blood sugar and boosts energy.', tags: ['NMN','Gymnema Sylvestre','Blood Sugar','Energy'] } }
+const produits = window._adminProduits || [
+    { id: 'rocenta', icon: 'fa-seedling', color: 'linear-gradient(135deg,#2d6a4f,#40916c)', fr: { name: 'Rocenta', tag: 'Produit Principal', desc: 'Santé générale & immunité. Supplément 100 % botanique à base de plantes et cellules souches.', tags: ['Placenta de Rose Bulgare','NMN','Algue Brune','Ashwagandha'], prix: '30 000 FCFA' }, en: { name: 'Rocenta', tag: 'Main Product', desc: 'General health & immunity. 100% botanical supplement based on plants and stem cells.', tags: ['Bulgarian Rose Placenta','NMN','Brown Algae','Ashwagandha'], prix: '€50' } },
+    { id: 'aceguard', icon: 'fa-shield-halved', color: 'linear-gradient(135deg,#1b4332,#2d6a4f)', fr: { name: 'Aceguard', tag: 'Bouclier Immunitaire', desc: 'Renforce le système immunitaire. Triple formulation de cellules souches.', tags: ['Bêta-Glucane','Gymnema Sylvestre','Lait de Tigre','Graine Noire'], prix: '25 000 FCFA' }, en: { name: 'Aceguard', tag: 'Immune Shield', desc: 'Strengthens the immune system. Triple stem cell formulation.', tags: ['Beta-Glucan','Gymnema Sylvestre','Tiger Milk','Black Seed'], prix: '€40' } },
+    { id: 'urbanism', icon: 'fa-weight-scale', color: 'linear-gradient(135deg,#e76f51,#f4a261)', fr: { name: 'Urbanism', tag: 'Gestion du Poids', desc: 'Programme minceur (Sunz + Moonz). Brûle la graisse viscérale sans régime restrictif.', tags: ['Morosil®','Sinetrol®','Coupe-faim','Remodelant'], prix: '35 000 FCFA' }, en: { name: 'Urbanism', tag: 'Weight Management', desc: 'Weight loss program (Sunz + Moonz). Burns visceral fat without restrictive diet.', tags: ['Morosil®','Sinetrol®','Appetite Control','Shaping'], prix: '€55' } },
+    { id: 'collagene', icon: 'fa-hand-sparkles', color: 'linear-gradient(135deg,#d4a373,#faedcd)', fr: { name: 'Collagène', tag: 'Beauté & Régénération', desc: 'Régénère la peau, les articulations et les muscles. Paraissez 5 ans plus jeune.', tags: ['Collagène Marin','NMN','Nid d\'Oiseau','Élastine'], prix: '28 000 FCFA' }, en: { name: 'Collagen', tag: 'Beauty & Regeneration', desc: 'Regenerates skin, joints and muscles. Look 5 years younger.', tags: ['Marine Collagen','NMN','Bird\'s Nest','Elastin'], prix: '€45' } },
+    { id: 'tripleroot', icon: 'fa-mars', color: 'linear-gradient(135deg,#3a0ca3,#4361ee)', fr: { name: 'Triple Root Coffee', tag: 'Santé Masculine', desc: 'Pour hommes adultes. Café santé qui booste la testostérone et la vitalité.', tags: ['Testostérone','Spermatozoïdes','Endurance','Libido'], prix: '22 000 FCFA' }, en: { name: 'Triple Root Coffee', tag: 'Men\'s Health', desc: 'For adult men. Health coffee that boosts testosterone and vitality.', tags: ['Testosterone','Sperm Quality','Endurance','Libido'], prix: '€35' } },
+    { id: 'lyftmax', icon: 'fa-venus', color: 'linear-gradient(135deg,#c77dff,#9d4edd)', fr: { name: 'Lyftmax', tag: 'Santé Féminine', desc: 'Équilibre hormonal naturel. Raffermit et atténue les symptômes de la ménopause.', tags: ['Estro-G 100','Cycles menstruels','Libido','Ménopause'], prix: '28 000 FCFA' }, en: { name: 'Lyftmax', tag: 'Women\'s Health', desc: 'Natural hormonal balance. Firms and relieves menopause symptoms.', tags: ['Estro-G 100','Menstrual Cycles','Libido','Menopause'], prix: '€45' } },
+    { id: 'acebrew', icon: 'fa-mug-hot', color: 'linear-gradient(135deg,#7f4f24,#a68a64)', fr: { name: 'Acebrew Coffee', tag: 'Café Santé', desc: 'Café santé enrichi au NMN. Contrôle la glycémie et booste l\'énergie.', tags: ['NMN','Gymnema Sylvestre','Glycémie','Énergie'], prix: '20 000 FCFA' }, en: { name: 'Acebrew Coffee', tag: 'Health Coffee', desc: 'NMN-enriched health coffee. Controls blood sugar and boosts energy.', tags: ['NMN','Gymnema Sylvestre','Blood Sugar','Energy'], prix: '€30' } }
 ];
 
-const produitDetails = {
+const produitDetails = window._adminDetails || {
     rocenta: {
         fr: {
             intro: '<strong>Rocenta</strong> est le produit phare de DYNACE Global. Un supplément 100 % botanique à base de Placenta de Rose Bulgare, de NMN et d\'extraits de plantes soigneusement sélectionnés pour renforcer l\'immunité et revitaliser l\'organisme.',
@@ -268,8 +282,8 @@ function applyLang(lang) {
 
 function getProductIdFromPath() {
     const path = window.location.pathname;
-    const match = path.match(/^\/(.+)\.html$/);
-    if (match && match[1] !== 'index' && match[1] !== 'produit') {
+    const match = path.match(/\/([^\/]+)\.html$/);
+    if (match && match[1] !== 'index') {
         return match[1];
     }
     return null;
@@ -304,6 +318,7 @@ function renderProductDetail(id, lang) {
                     <div>
                         <span class="pd-tag">${d.tag}</span>
                         <h1 class="pd-title">${d.name}</h1>
+                        <div class="pd-price">${d.prix}</div>
                     </div>
                 </div>
             </div>
@@ -331,7 +346,7 @@ function renderProductDetail(id, lang) {
                 </div>
                 <div class="pd-section">
                     <div class="pd-cta">
-                        <a href="https://wa.me/2290166212501?text=Bonjour%20je%20souhaite%20des%20informations%20sur%20${encodeURIComponent(d.name)}" target="_blank" rel="noopener" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> <span data-i18n="pd_whatsapp">Commander sur WhatsApp</span></a>
+                        <a href="https://wa.me/2290166212501?text=Bonjour%20je%20souhaite%20des%20informations%20sur%20${encodeURIComponent(d.name)}%20(${encodeURIComponent(d.prix)})" target="_blank" rel="noopener" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> <span data-i18n="pd_whatsapp">Commander sur WhatsApp</span></a>
                         <a href="index.html#contact" class="btn btn-primary"><span data-i18n="pd_contact">Nous contacter</span></a>
                     </div>
                 </div>
@@ -354,6 +369,7 @@ function renderProducts(lang) {
                 <h3>${d.name}</h3>
                 <span class="produit-tag">${d.tag}</span>
                 <p>${d.desc}</p>
+                <div class="produit-prix">${d.prix}</div>
                 <ul>${d.tags.map(t => `<li>${t}</li>`).join('')}</ul>
             </div>
         </a>`;

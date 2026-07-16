@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Administration – DYNACE Global</title>
+<link rel="icon" type="image/png" sizes="32x32" href="Dynace1.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+    --green-700:#2d6a4f;--green-600:#40916c;--green-500:#52b788;--green-100:#d8f3dc;
+    --dark:#0d1b2a;--text:#1a1a2e;--text-light:#6c757d;--bg:#f8f9fa;--radius:12px;
+    --shadow:0 4px 20px rgba(0,0,0,0.06);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; color:var(--text); background:var(--bg); line-height:1.6; }
+.container { max-width:1200px; margin:0 auto; padding:1.5rem; }
+
+.admin-header {
+    background: var(--dark); color:#fff; padding:1.5rem 0;
+    display:flex; align-items:center; justify-content:space-between;
+}
+.admin-header h1 { font-size:1.3rem; font-weight:800; }
+.admin-header a { color:rgba(255,255,255,0.7); font-size:0.9rem; text-decoration:none; }
+.admin-header a:hover { color:#fff; }
+.admin-actions { display:flex; gap:0.8rem; flex-wrap:wrap; margin:1.5rem 0; }
+.btn {
+    display:inline-flex; align-items:center; gap:0.4rem;
+    padding:0.6rem 1.2rem; border-radius:50px; font-weight:600;
+    font-size:0.85rem; cursor:pointer; border:none; font-family:inherit;
+    transition:all 0.3s; text-decoration:none;
+}
+.btn-primary { background:var(--green-700); color:#fff; }
+.btn-primary:hover { background:var(--green-600); }
+.btn-danger { background:#e63946; color:#fff; }
+.btn-danger:hover { background:#c1121f; }
+.btn-outline { background:transparent; border:2px solid var(--green-700); color:var(--green-700); }
+.btn-outline:hover { background:var(--green-100); }
+.btn-sm { padding:0.35rem 0.8rem; font-size:0.78rem; }
+
+.login-screen {
+    max-width:400px; margin:4rem auto; text-align:center;
+    background:#fff; padding:2.5rem; border-radius:var(--radius); box-shadow:var(--shadow);
+}
+.login-screen h2 { margin-bottom:0.5rem; }
+.login-screen p { color:var(--text-light); font-size:0.9rem; margin-bottom:1.5rem; }
+.login-screen input {
+    width:100%; padding:0.8rem 1rem; border:2px solid #e0e0e0; border-radius:10px;
+    font-size:1rem; font-family:inherit; margin-bottom:1rem; outline:none;
+}
+.login-screen input:focus { border-color:var(--green-600); }
+.login-error { color:#e63946; font-size:0.85rem; margin-bottom:0.5rem; display:none; }
+
+.product-list { display:flex; flex-direction:column; gap:1rem; }
+.product-card {
+    background:#fff; border-radius:var(--radius); box-shadow:var(--shadow);
+    overflow:hidden;
+}
+.product-card-header {
+    display:flex; align-items:center; gap:1rem; padding:1rem 1.5rem;
+    cursor:pointer; user-select:none;
+}
+.product-card-header:hover { background:rgba(0,0,0,0.02); }
+.product-card-header .thumb {
+    width:48px; height:48px; border-radius:50%; object-fit:cover;
+    border:2px solid rgba(0,0,0,0.1); flex-shrink:0;
+}
+.product-card-header h3 { font-size:1rem; font-weight:700; flex:1; }
+.product-card-header .badge {
+    background:var(--green-100); color:var(--green-700);
+    padding:0.15rem 0.6rem; border-radius:50px; font-size:0.72rem; font-weight:600;
+}
+.product-card-header .chevron { transition:transform 0.3s; color:var(--text-light); }
+.product-card.open .chevron { transform:rotate(180deg); }
+.product-card-body { display:none; padding:0 1.5rem 1.5rem; }
+.product-card.open .product-card-body { display:block; }
+
+.form-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.form-group { margin-bottom:0.8rem; }
+.form-group label {
+    display:block; font-size:0.8rem; font-weight:600; margin-bottom:0.25rem;
+    color:var(--text-light); text-transform:uppercase; letter-spacing:0.3px;
+}
+.form-group input,.form-group textarea,.form-group select {
+    width:100%; padding:0.55rem 0.8rem; border:2px solid #e0e0e0;
+    border-radius:8px; font-size:0.88rem; font-family:inherit; outline:none; transition:border-color 0.3s;
+}
+.form-group input:focus,.form-group textarea:focus { border-color:var(--green-600); }
+.form-group textarea { resize:vertical; min-height:60px; }
+.form-group .lang-label { font-size:0.7rem; font-weight:700; color:var(--green-700); margin-bottom:0.2rem; }
+.form-group-inline { display:flex; gap:0.5rem; flex-wrap:wrap; }
+
+.toast {
+    position:fixed; bottom:1.5rem; right:1.5rem;
+    background:var(--green-700); color:#fff; padding:0.8rem 1.5rem;
+    border-radius:10px; font-weight:600; font-size:0.9rem;
+    box-shadow:0 4px 20px rgba(0,0,0,0.15); z-index:9999;
+    transform:translateY(120%); transition:transform 0.4s ease;
+}
+.toast.show { transform:translateY(0); }
+.toast.error { background:#e63946; }
+
+@media (max-width:768px) {
+    .form-grid { grid-template-columns:1fr; }
+    .admin-header h1 { font-size:1rem; }
+}
+</style>
+</head>
+<body>
+
+<div id="loginScreen" class="login-screen">
+    <img src="Dynace1.png" alt="DYNACE" style="height:48px;margin-bottom:1rem;" />
+    <h2>Administration</h2>
+    <p>Connectez-vous pour gérer les produits</p>
+    <input type="password" id="adminPassword" placeholder="Mot de passe" />
+    <div class="login-error" id="loginError">Mot de passe incorrect</div>
+    <button class="btn btn-primary" onclick="checkLogin()" style="width:100%;justify-content:center;">Connexion</button>
+</div>
+
+<div id="adminApp" style="display:none;">
+    <div class="admin-header">
+        <div class="container" style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+            <h1><i class="fas fa-cog"></i> Administration DYNACE</h1>
+            <div style="display:flex;gap:1rem;align-items:center;">
+                <a href="index.html" target="_blank"><i class="fas fa-external-link-alt"></i> Voir le site</a>
+                <a href="#" onclick="logout();return false;" style="color:#e63946;"><i class="fas fa-sign-out-alt"></i> Quitter</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="admin-actions">
+            <button class="btn btn-primary" onclick="saveAll()"><i class="fas fa-save"></i> Enregistrer</button>
+            <button class="btn btn-outline" onclick="exportData()"><i class="fas fa-download"></i> Exporter JSON</button>
+            <button class="btn btn-outline" onclick="document.getElementById('importInput').click()"><i class="fas fa-upload"></i> Importer JSON</button>
+            <input type="file" id="importInput" accept=".json" style="display:none" onchange="importData(event)" />
+            <button class="btn btn-danger" onclick="resetAll()"><i class="fas fa-undo"></i> Réinitialiser</button>
+        </div>
+        <div class="product-list" id="productList"></div>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const PASS = 'dynace2025';
+const STORAGE_KEY = 'dynace_admin_data';
+
+const defaultData = {
+    produits: [
+        { id:'rocenta', icon:'fa-seedling', color:'linear-gradient(135deg,#2d6a4f,#40916c)', fr:{ name:'Rocenta', tag:'Produit Principal', desc:'Santé générale & immunité. Supplément 100 % botanique à base de plantes et cellules souches.', tags:['Placenta de Rose Bulgare','NMN','Algue Brune','Ashwagandha'], prix:'30 000 FCFA' }, en:{ name:'Rocenta', tag:'Main Product', desc:'General health & immunity. 100% botanical supplement based on plants and stem cells.', tags:['Bulgarian Rose Placenta','NMN','Brown Algae','Ashwagandha'], prix:'€50' } },
+        { id:'aceguard', icon:'fa-shield-halved', color:'linear-gradient(135deg,#1b4332,#2d6a4f)', fr:{ name:'Aceguard', tag:'Bouclier Immunitaire', desc:'Renforce le système immunitaire. Triple formulation de cellules souches.', tags:['Bêta-Glucane','Gymnema Sylvestre','Lait de Tigre','Graine Noire'], prix:'25 000 FCFA' }, en:{ name:'Aceguard', tag:'Immune Shield', desc:'Strengthens the immune system. Triple stem cell formulation.', tags:['Beta-Glucan','Gymnema Sylvestre','Tiger Milk','Black Seed'], prix:'€40' } },
+        { id:'urbanism', icon:'fa-weight-scale', color:'linear-gradient(135deg,#e76f51,#f4a261)', fr:{ name:'Urbanism', tag:'Gestion du Poids', desc:'Programme minceur (Sunz + Moonz). Brûle la graisse viscérale sans régime restrictif.', tags:['Morosil®','Sinetrol®','Coupe-faim','Remodelant'], prix:'35 000 FCFA' }, en:{ name:'Urbanism', tag:'Weight Management', desc:'Weight loss program (Sunz + Moonz). Burns visceral fat without restrictive diet.', tags:['Morosil®','Sinetrol®','Appetite Control','Shaping'], prix:'€55' } },
+        { id:'collagene', icon:'fa-hand-sparkles', color:'linear-gradient(135deg,#d4a373,#faedcd)', fr:{ name:'Collagène', tag:'Beauté & Régénération', desc:'Régénère la peau, les articulations et les muscles. Paraissez 5 ans plus jeune.', tags:['Collagène Marin','NMN',"Nid d'Oiseau",'Élastine'], prix:'28 000 FCFA' }, en:{ name:'Collagen', tag:'Beauty & Regeneration', desc:'Regenerates skin, joints and muscles. Look 5 years younger.', tags:['Marine Collagen','NMN',"Bird's Nest",'Elastin'], prix:'€45' } },
+        { id:'tripleroot', icon:'fa-mars', color:'linear-gradient(135deg,#3a0ca3,#4361ee)', fr:{ name:'Triple Root Coffee', tag:'Santé Masculine', desc:'Pour hommes adultes. Café santé qui booste la testostérone et la vitalité.', tags:['Testostérone','Spermatozoïdes','Endurance','Libido'], prix:'22 000 FCFA' }, en:{ name:'Triple Root Coffee', tag:"Men's Health", desc:'For adult men. Health coffee that boosts testosterone and vitality.', tags:['Testosterone','Sperm Quality','Endurance','Libido'], prix:'€35' } },
+        { id:'lyftmax', icon:'fa-venus', color:'linear-gradient(135deg,#c77dff,#9d4edd)', fr:{ name:'Lyftmax', tag:'Santé Féminine', desc:'Équilibre hormonal naturel. Raffermit et atténue les symptômes de la ménopause.', tags:['Estro-G 100','Cycles menstruels','Libido','Ménopause'], prix:'28 000 FCFA' }, en:{ name:'Lyftmax', tag:"Women's Health", desc:'Natural hormonal balance. Firms and relieves menopause symptoms.', tags:['Estro-G 100','Menstrual Cycles','Libido','Menopause'], prix:'€45' } },
+        { id:'acebrew', icon:'fa-mug-hot', color:'linear-gradient(135deg,#7f4f24,#a68a64)', fr:{ name:'Acebrew Coffee', tag:'Café Santé', desc:"Café santé enrichi au NMN. Contrôle la glycémie et booste l'énergie.", tags:['NMN','Gymnema Sylvestre','Glycémie','Énergie'], prix:'20 000 FCFA' }, en:{ name:'Acebrew Coffee', tag:'Health Coffee', desc:'NMN-enriched health coffee. Controls blood sugar and boosts energy.', tags:['NMN','Gymnema Sylvestre','Blood Sugar','Energy'], prix:'€30' } }
+    ],
+    details: {
+        rocenta: { fr:{ intro:'<strong>Rocenta</strong> est le produit phare de DYNACE Global. Un supplément 100 % botanique à base de Placenta de Rose Bulgare, de NMN et d\'extraits de plantes soigneusement sélectionnés pour renforcer l\'immunité et revitaliser l\'organisme.', desc:'Rocenta agit en profondeur sur le système immunitaire grâce à sa formulation unique associant des cellules souches végétales et des actifs naturels. Il aide à lutter contre la fatigue, renforce les défenses naturelles et favorise une meilleure récupération physique et mentale.', usage:'Prendre 1 sachet le matin à jeun. Verser la poudre sous la langue, laisser dissoudre 30s à 1 minute. Attendre 20 minutes avant de manger ou boire. Après 10 jours, passer à 2 sachets/jour.' }, en:{ intro:'<strong>Rocenta</strong> is DYNACE Global\'s flagship product. A 100% botanical supplement based on Bulgarian Rose Placenta, NMN and carefully selected plant extracts.', desc:'Rocenta works deeply on the immune system. It helps fight fatigue, strengthens natural defenses and promotes better physical and mental recovery.', usage:'Take 1 sachet in the morning on an empty stomach. Pour powder under tongue, let dissolve 30s-1min. Wait 20min before eating or drinking. After 10 days, max 2 sachets/day.' } },
+        aceguard: { fr:{ intro:'<strong>Aceguard</strong> est le bouclier immunitaire nouvelle génération. Sa triple formulation à base de cellules souches végétales offre une protection renforcée.', desc:'Aceguard combine le Bêta-Glucane, le Gymnema Sylvestre, le Lait de Tigre et la Graine Noire pour une synergie protectrice unique. Idéal pour les changements de saison.', usage:'Prendre 1 sachet/jour le matin à jeun. Verser sous la langue, laisser fondre 30s. Pour les enfants, demi-sachet. Cure recommandée : 30 jours.' }, en:{ intro:'<strong>Aceguard</strong> is the new generation immune shield. Triple plant stem cell formulation offers reinforced protection.', desc:'Aceguard combines Beta-Glucan, Gymnema Sylvestre, Tiger Milk and Black Seed. Ideal for seasonal changes.', usage:'Take 1 sachet/day in the morning on empty stomach. Pour under tongue, let dissolve 30s. For children, half sachet. Recommended: 30 days.' } },
+        urbanism: { fr:{ intro:'<strong>Urbanism</strong> est un programme minceur complet (Sunz + Moonz) pour brûler la graisse viscérale sans régime restrictif.', desc:'Urbanism associe le Morosil® et le Sinetrol® pour un effet brûle-graisse puissant et naturel. Remodeler la silhouette sans effet secondaire.', usage:'Prendre Sunz le matin (1 capsule) et Moonz le soir (1 capsule). Boire 1,5L d\'eau/jour. Cure recommandée : 3 mois.' }, en:{ intro:'<strong>Urbanism</strong> is a complete weight loss program (Sunz + Moonz) to burn visceral fat without restrictive diet.', desc:'Urbanism combines Morosil® and Sinetrol® for powerful natural fat-burning. Reshape your silhouette with no side effects.', usage:'Take Sunz in the morning (1 capsule) and Moonz in the evening (1 capsule). Drink 1.5L water/day. Recommended: 3 months.' } },
+        collagene: { fr:{ intro:'<strong>Collagène</strong> est le supplément beauté et régénération. À base de Collagène Marin, NMN, Nid d\'Oiseau et Élastine.', desc:'Le Collagène DYNACE stimule la production naturelle de collagène, améliore l\'élasticité de la peau et soulage les douleurs articulaires.', usage:'Prendre 1 sachet/jour dilué dans un verre d\'eau le matin à jeun. Cure recommandée : 3 mois. Associer à Lyftmax pour un résultat synergique.' }, en:{ intro:'<strong>Collagen</strong> is the ultimate beauty and regeneration supplement based on Marine Collagen, NMN, Bird\'s Nest and Elastin.', desc:'DYNACE Collagen stimulates natural collagen production, improves skin elasticity and relieves joint pain.', usage:'Take 1 sachet/day diluted in water in the morning on empty stomach. Recommended: 3 months.' } },
+        tripleroot: { fr:{ intro:'<strong>Triple Root Coffee</strong> est un café santé pour hommes adultes qui booste naturellement la testostérone.', desc:'Triple Root Coffee améliore la production de testostérone, l\'endurance physique et sexuelle. Résultats visibles dès 2 à 4 semaines.', usage:'Prendre 1 tasse/jour le matin. Diluer un sachet dans de l\'eau chaude. Max 2 tasses/jour. Déconseillé aux moins de 18 ans.' }, en:{ intro:'<strong>Triple Root Coffee</strong> is a health coffee for adult men that naturally boosts testosterone.', desc:'Triple Root Coffee improves testosterone production, physical and sexual endurance. Visible results in 2-4 weeks.', usage:'Take 1 cup/day in the morning. Dilute sachet in hot water. Max 2 cups/day. Not for under 18.' } },
+        lyftmax: { fr:{ intro:'<strong>Lyftmax</strong> équilibre naturellement les hormones féminines et atténue les symptômes de la ménopause.', desc:'Lyftmax contient Estro-G 100 qui régule le cycle menstruel et atténue bouffées de chaleur et sautes d\'humeur. Raffermit la poitrine.', usage:'Prendre 1 capsule/jour le matin avec un verre d\'eau. Cure recommandée : 3 mois.' }, en:{ intro:'<strong>Lyftmax</strong> naturally balances female hormones and reduces menopause symptoms.', desc:'Lyftmax contains Estro-G 100 which regulates the menstrual cycle and reduces hot flashes and mood swings.', usage:'Take 1 capsule/day in the morning with water. Recommended: 3 months.' } },
+        acebrew: { fr:{ intro:'<strong>Acebrew Coffee</strong> est un café santé enrichi au NMN. Contrôle la glycémie et booste l\'énergie.', desc:'Acebrew Coffee associe NMN, Gymnema Sylvestre et extraits de café vert pour réguler le sucre sanguin et stimuler le métabolisme.', usage:'Prendre 1 tasse/jour le matin au petit-déjeuner. Diluer un sachet dans de l\'eau chaude. Max 2 tasses/jour.' }, en:{ intro:'<strong>Acebrew Coffee</strong> is an NMN-enriched health coffee. Controls blood sugar and boosts energy.', desc:'Acebrew Coffee combines NMN, Gymnema Sylvestre and green coffee extracts to regulate blood sugar and stimulate metabolism.', usage:'Take 1 cup/day in the morning at breakfast. Dilute sachet in hot water. Max 2 cups/day.' } }
+    }
+};
+
+let data = loadData();
+
+function loadData() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+        try { return JSON.parse(saved); } catch(e) {}
+    }
+    return JSON.parse(JSON.stringify(defaultData));
+}
+
+function saveData() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+function getImgName(id) {
+    return id === 'tripleroot' ? 'DYNACE_TRIPLE_ROOT' : id === 'acebrew' ? 'DYNACE_ACE_BREW' : 'DYNACE_' + id.toUpperCase();
+}
+
+function checkLogin() {
+    const pwd = document.getElementById('adminPassword').value;
+    if (pwd === PASS) {
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('adminApp').style.display = 'block';
+        renderProductList();
+        showToast('Connecté avec succès');
+    } else {
+        document.getElementById('loginError').style.display = 'block';
+    }
+}
+
+document.getElementById('adminPassword').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkLogin();
+});
+
+function renderProductList() {
+    const list = document.getElementById('productList');
+    list.innerHTML = data.produits.map((p, idx) => {
+        const img = getImgName(p.id);
+        return `<div class="product-card" id="card-${p.id}">
+            <div class="product-card-header" onclick="toggleCard('${p.id}')">
+                <img src="images/thumb_${img}.jpg" alt="" class="thumb" />
+                <h3>${p.fr.name} / ${p.en.name}</h3>
+                <span class="badge">${p.fr.prix}</span>
+                <i class="fas fa-chevron-down chevron"></i>
+            </div>
+            <div class="product-card-body">
+                ${renderProductForm(p, idx)}
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function renderProductForm(p, idx) {
+    const d = data.details[p.id];
+    return `
+    <div class="form-grid">
+        <div><div class="form-group"><label>Icone (FontAwesome)</label><input value="${p.icon}" onchange="update(${idx},'icon',this.value)" /></div></div>
+        <div><div class="form-group"><label>Couleur (gradient CSS)</label><input value="${p.color}" onchange="update(${idx},'color',this.value)" /></div></div>
+    </div>
+    <div class="form-grid">
+        <div>
+            <div class="lang-label">FRANÇAIS</div>
+            <div class="form-group"><label>Nom</label><input value="${esc(p.fr.name)}" onchange="updateFr(${idx},'name',this.value)" /></div>
+            <div class="form-group"><label>Tag</label><input value="${esc(p.fr.tag)}" onchange="updateFr(${idx},'tag',this.value)" /></div>
+            <div class="form-group"><label>Description courte</label><textarea onchange="updateFr(${idx},'desc',this.value)">${esc(p.fr.desc)}</textarea></div>
+            <div class="form-group"><label>Prix</label><input value="${esc(p.fr.prix)}" onchange="updateFr(${idx},'prix',this.value)" /></div>
+        </div>
+        <div>
+            <div class="lang-label">ENGLISH</div>
+            <div class="form-group"><label>Name</label><input value="${esc(p.en.name)}" onchange="updateEn(${idx},'name',this.value)" /></div>
+            <div class="form-group"><label>Tag</label><input value="${esc(p.en.tag)}" onchange="updateEn(${idx},'tag',this.value)" /></div>
+            <div class="form-group"><label>Short description</label><textarea onchange="updateEn(${idx},'desc',this.value)">${esc(p.en.desc)}</textarea></div>
+            <div class="form-group"><label>Price</label><input value="${esc(p.en.prix)}" onchange="updateEn(${idx},'prix',this.value)" /></div>
+        </div>
+    </div>
+    <div class="form-grid">
+        <div class="form-group">
+            <label>Tags FR (séparés par des virgules)</label>
+            <input value="${esc(p.fr.tags.join(', '))}" onchange="updateFr(${idx},'tags',this.value.split(',').map(t=>t.trim()))" />
+        </div>
+        <div class="form-group">
+            <label>Tags EN (comma separated)</label>
+            <input value="${esc(p.en.tags.join(', '))}" onchange="updateEn(${idx},'tags',this.value.split(',').map(t=>t.trim()))" />
+        </div>
+    </div>
+    <div class="form-grid">
+        <div>
+            <div class="form-group"><label>Introduction FR</label><textarea rows="3" onchange="updateDetail(${idx},'fr','intro',this.value)">${esc(d.fr.intro)}</textarea></div>
+            <div class="form-group"><label>Description FR</label><textarea rows="4" onchange="updateDetail(${idx},'fr','desc',this.value)">${esc(d.fr.desc)}</textarea></div>
+            <div class="form-group"><label>Utilisation FR</label><textarea rows="3" onchange="updateDetail(${idx},'fr','usage',this.value)">${esc(d.fr.usage)}</textarea></div>
+        </div>
+        <div>
+            <div class="form-group"><label>Introduction EN</label><textarea rows="3" onchange="updateDetail(${idx},'en','intro',this.value)">${esc(d.en.intro)}</textarea></div>
+            <div class="form-group"><label>Description EN</label><textarea rows="4" onchange="updateDetail(${idx},'en','desc',this.value)">${esc(d.en.desc)}</textarea></div>
+            <div class="form-group"><label>Usage EN</label><textarea rows="3" onchange="updateDetail(${idx},'en','usage',this.value)">${esc(d.en.usage)}</textarea></div>
+        </div>
+    </div>`;
+}
+
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function toggleCard(id) {
+    document.getElementById('card-' + id).classList.toggle('open');
+}
+
+function update(idx, field, val) { data.produits[idx][field] = val; saveData(); }
+function updateFr(idx, field, val) { data.produits[idx].fr[field] = val; saveData(); }
+function updateEn(idx, field, val) { data.produits[idx].en[field] = val; saveData(); }
+
+function updateDetail(idx, lang, field, val) {
+    const pid = data.produits[idx].id;
+    if (!data.details[pid]) data.details[pid] = { fr:{}, en:{} };
+    if (!data.details[pid][lang]) data.details[pid][lang] = {};
+    data.details[pid][lang][field] = val;
+    saveData();
+}
+
+function saveAll() {
+    saveData();
+    showToast('Données enregistrées dans le navigateur ✓');
+}
+
+function exportData() {
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'dynace_data.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('Fichier JSON exporté ✓');
+}
+
+function importData(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+        try {
+            const imported = JSON.parse(ev.target.result);
+            if (imported.produits && imported.details) {
+                data = imported;
+                saveData();
+                renderProductList();
+                showToast('Données importées avec succès ✓');
+            } else {
+                showToast('Format de fichier invalide', true);
+            }
+        } catch(err) {
+            showToast('Erreur de lecture du fichier', true);
+        }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+}
+
+function resetAll() {
+    if (!confirm('Réinitialiser toutes les données ? Cette action est irréversible.')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    data = JSON.parse(JSON.stringify(defaultData));
+    renderProductList();
+    showToast('Données réinitialisées ✓');
+}
+
+function showToast(msg, isError) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast' + (isError ? ' error' : '') + ' show';
+    setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+function logout() {
+    document.getElementById('adminApp').style.display = 'none';
+    document.getElementById('loginScreen').style.display = 'block';
+    document.getElementById('adminPassword').value = '';
+    document.getElementById('loginError').style.display = 'none';
+}
+</script>
+</body>
+</html>
